@@ -1,0 +1,13 @@
+name: KeepInventory
+version: '${project.version}'
+main: com.kerrishaus.keepinventory.KeepInventory
+api-version: 1.18
+prefix: KeepInventory
+authors: [ KerrisHaus, kennyrkun ]
+description: A plugin allowing players to toggle keep inventory individually.
+website: https://kerrishaus.com/minecraft/plugins
+
+commands:
+  keepinventory:
+    description: Toggle keep inventory on or off.
+    usage: /keepinventory <on|off> [player]
