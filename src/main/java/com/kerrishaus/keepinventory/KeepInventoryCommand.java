@@ -29,18 +29,25 @@ public final class KeepInventoryCommand implements CommandExecutor
 
         if (args.length == 0)
         {
-            sender.sendMessage("Keep inventory is turned " + (plugin.keepInventoryUsers.contains(((Player) sender).getUniqueId()) ? "on" : "off") + ".");
+            sender.sendMessage("Keep inventory is turned " + (plugin.dontKeepInventoryUsers.get(((Player) sender).getUniqueId()) ? "off" : "on") + ".");
             return true;
         }
 
+        String option = args[0];
+
         UUID playerId = ((Player) sender).getUniqueId();
 
-        plugin.toggleUserKeepInventory(playerId);
-
-        if (plugin.keepInventoryUsers.contains(playerId))
-            sender.sendMessage("KeepInventory is now on.");
+        if (option.equals("on"))
+            plugin.keepInventoryOn(playerId);
+        else if (option.equals("off"))
+            plugin.keepInventoryOff(playerId);
         else
+            return false;
+
+        if (plugin.dontKeepInventoryUsers.get(playerId))
             sender.sendMessage("KeepInventory is now off.");
+        else
+            sender.sendMessage("KeepInventory is now on.");
 
         return true;
     }
